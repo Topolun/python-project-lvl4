@@ -6,8 +6,13 @@ authors = ["Topolun <vik83tu@yandex.ru>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+Django = "^3.1.4"
+django-bootstrap4 = "^2.3.1"
+python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+rollbar = "^0.15.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
