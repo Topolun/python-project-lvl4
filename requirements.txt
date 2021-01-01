@@ -1,0 +1,10 @@
+asgiref==3.3.1; python_version >= "3.6" and python_version < "4.0"
+beautifulsoup4==4.9.3; python_version >= "3.6" and python_version < "4.0"
+django-bootstrap4==2.3.1; python_version >= "3.6" and python_version < "4.0"
+django==3.1.4; python_version >= "3.6"
+importlib-metadata==2.1.1; python_version >= "3.6" and python_full_version < "3.0.0" and python_version < "3.8" or python_version >= "3.6" and python_version < "3.8" and python_full_version >= "3.5.0"
+python-dotenv==0.15.0
+pytz==2020.4; python_version >= "3.6" and python_version < "4.0"
+soupsieve==2.0.1; python_version >= "3.6" and python_version < "4.0"
+sqlparse==0.4.1; python_version >= "3.6" and python_version < "4.0"
+zipp==3.4.0; python_version >= "3.6" and python_full_version < "3.0.0" and python_version < "3.8" or python_version >= "3.6" and python_version < "3.8" and python_full_version >= "3.5.0"
