@@ -1,11 +1,16 @@
 {% extends "task_manager/base.html" %}
 
-{% block heading %}Hello, {{who}}{% endblock heading %}
+{% block heading %}
+{% if user.is_authenticated %}
+Hello, dear {{ user.username }}!!!
+{% else %}
+Hello, {{who}}
+{% endif %}
+{% endblock heading %}
 
 {% block content %}
-
 {% if user.is_authenticated %}
-Hello!!! {{ user.username }}
+Glad to see you here. Lets's start our work :)
 {% else %}
 This is the first page of our application
 <p class="lead">
