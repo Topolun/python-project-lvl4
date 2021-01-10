@@ -1,0 +1,17 @@
+{% extends "task_manager/base.html" %}
+
+{% block meta %}
+<meta http-equiv="refresh" content="5; URL=/fcm/test">
+{% endblock meta %}
+
+{% block heading %}
+Hello,
+<p>Your staff is {{ data }}:</p>
+{% endblock heading %}
+
+
+{% block content %}
+
+    This information will be closed in a 5 seconds
+    
+{% endblock content %}

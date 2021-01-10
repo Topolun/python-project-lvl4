@@ -1,8 +1,8 @@
 {% extends "task_manager/base.html" %}
 
 {% block heading %}
-Hello, {{ user.username }}
-<p>Log in to your account</p>
+Hello,
+<p>Put your card to the CardReader</p>
 {% endblock heading %}
 
 
@@ -10,6 +10,6 @@ Hello, {{ user.username }}
 <form action = "" method = "post">
     {% csrf_token %}
     {{form.as_p}}
-    <input class="btn btn-lg btn-secondary" type="submit" value="Login">
+    <input class="btn btn-lg btn-secondary" type="submit" value="Put the item">
 </form>
 {% endblock content %}

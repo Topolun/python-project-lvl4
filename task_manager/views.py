@@ -5,5 +5,5 @@ def index(request):
     return render(
         request,
         'task_manager/index.html',
-        context={'who': 'dear friend', 'home': 'active'},
+        context = {'who': 'dear friend', 'home': 'active'},
         )
