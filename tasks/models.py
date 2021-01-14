@@ -6,8 +6,15 @@ from users.models import CustomUser
 class TaskStatus(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
+    def __str__(self):
+        return self.name
+
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
 
 
 class Tasks(models.Model):
@@ -18,6 +25,11 @@ class Tasks(models.Model):
     assigned_to = models.ForeignKey(CustomUser,
         on_delete=models.RESTRICT,
         blank=True,
-        related_name= 'assigned'
+        null=True,
+        related_name='assigned'
     )
     tags = models.ManyToManyField(Tag, blank=True)
+
+    def __str__(self):
+        return self.name
+

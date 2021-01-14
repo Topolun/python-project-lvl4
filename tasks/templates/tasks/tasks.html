@@ -1,0 +1,14 @@
+{% extends "task_manager/base.html" %}
+
+{% block heading %}
+Hello, 
+{% endblock heading %}
+
+
+{% block content %}
+<form action = "" method = "post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn btn-lg btn-secondary" type="submit" value="Login">
+</form>
+{% endblock content %}
