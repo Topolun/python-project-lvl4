@@ -1,0 +1,22 @@
+{% extends "task_manager/base.html" %}
+
+{% load tasks_extras %}
+
+{% block heading %}TEST TABLE{% endblock heading %}
+
+{% block content %}
+<table class="table table-dark table-striped table-hover">
+    <tr>
+    {% for column in columns %}
+        <th>{{ column }}</th>
+    {% endfor %}
+    </tr>
+    {% for item in object_list %}
+    <tr> 
+        {% for column in columns %}
+        <td>{{ item|row:column }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% load tasks_extras %}
+
+<p>Начало</p>
+
+<ul>
+    {% for article in object_list.values_list %}
+        <li>{{ article }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+</ul>
+
+<p>Поехали: {{ object_list|columns }}</p>
+
+<p>{{ test }}</p>
+<p> Слующее ________________________________________ </p>
+<ul>
+    {% for i in object_list %}
+        <li>{{ i }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+</ul>
+<p> Слующее ________________________________________ </p>
+<p> Таблица </p>
+
+<table>
+    <tr>
+        {% for i in test %}
+        <td>{{ i }} ???????????</td>
+        {% empty %}
+        <td>Not yet.</td>
+        {% endfor %}
+    </tr>
+{% for serv in object_list %}
+    <tr>
+        {% for i in test %}
+        <td>{{ serv|row:i }} |||||||</td>
+        {% empty %}
+        <td>Not yet.</td>
+        {% endfor %}
+    </tr>
+{% endfor %}
+</table>
+
+<p>{{proba.values}}</p>
+<ul>
+    {% for i in proba.keys %}
+        <li>{{ i }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+</ul>
+
+<p>Тест фильтров</p>
+<p>{{object_list}}</p>
