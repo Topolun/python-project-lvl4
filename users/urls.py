@@ -19,7 +19,12 @@ urlpatterns = [
     ),
     path(
         'register/',
-        views.register_view.as_view(extra_context={'register': 'active'}),
+        views.register_view.as_view(extra_context={'register': 'active'}, http_method_names=['get', 'post']),
         name='CreateUser'
-    )
+    ),
+        path(
+        'list/',
+        views.users_list_view.as_view(),
+        name='userlist'
+    ),
 ]

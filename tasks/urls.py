@@ -9,4 +9,9 @@ urlpatterns = [
             ),
         name='tasks'
     ),
+    path(
+        'table',
+        views.TasksTabview.as_view(),
+        name='tabletask'
+    ),
 ]

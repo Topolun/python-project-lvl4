@@ -1,4 +1,5 @@
 {% extends "task_manager/base.html" %}
+{% load i18n %}
 
 {% block heading %}
 {% if user.is_authenticated %}
@@ -17,4 +18,13 @@ This is the first page of our application
     <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
 </p>
 {% endif %}
+
+<p>{% translate "Home" %}</p>
+
+<p>{% translate "User" %}</p>
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{{LANGUAGE_CODE}}
+
 {% endblock content %}
