@@ -18,13 +18,23 @@ urlpatterns = [
         name='logout'
     ),
     path(
-        'register/',
+        'create/',
         views.register_view.as_view(extra_context={'register': 'active'}, http_method_names=['get', 'post']),
         name='CreateUser'
     ),
-        path(
-        'list/',
+    path(
+        '',
         views.users_list_view.as_view(),
         name='userlist'
+    ),
+    path(
+        '<int:pk>/update/',
+        views.change_view.as_view(extra_context={'register': 'active'}, http_method_names=['get', 'post']),
+        name='UpdateUser'
+    ),
+    path(
+        '<int:pk>/delete/',
+        views.delete_view.as_view(extra_context={'register': 'active'}),
+        name='DeleteUser'
     ),
 ]

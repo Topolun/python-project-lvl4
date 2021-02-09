@@ -1,0 +1,12 @@
+{% extends "task_manager/base.html" %}
+
+{% block heading %}Do you want to delete {{object}}{% endblock heading %}
+
+{% block content %}
+<form action = "" method = "post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn btn-lg btn-secondary" type="submit" value="Yes! Delete">
+    <a class="btn btn-lg btn-secondary" href="{% url 'userlist' %}">No! Cancel</a>
+</form>
+{% endblock content %}

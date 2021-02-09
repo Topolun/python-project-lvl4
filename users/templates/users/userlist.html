@@ -10,12 +10,17 @@
     {% for column in columns %}
         <th>{{ column }}</th>
     {% endfor %}
+        <th></th>
     </tr>
     {% for item in object_list %}
     <tr> 
         {% for column in columns %}
         <td>{{ item|row:column }}</td>
         {% endfor %}
+        <td>
+            <p><a class="nav-link" href="/users/{{item.pk}}/update">Update</a></p>
+            <p><a class="nav-link" href="/users/{{item.pk}}/delete">Delete</a></p>
+        </td>
     </tr>
     {% endfor %}
 </table>

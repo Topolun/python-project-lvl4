@@ -8,4 +8,12 @@
     {{form.as_p}}
     <input class="btn btn-lg btn-secondary" type="submit" value="Create user">
 </form>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock content %}
