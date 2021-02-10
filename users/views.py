@@ -14,6 +14,23 @@ from django.http import HttpResponse, HttpResponseRedirect
 from users.forms import CustomUserCreationForm, CustomUserChangeForm
 from users.models import CustomUser
 
+from django.contrib.auth import views as authviews
+
+# Custom Mixins:
+
+class ErrorMessageMixin:
+    error_message = ''
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        obj = self.get_object()
+        context = self.get_context_data(object=self.object)
+        if self.object.pk is not request.user.pk:
+            redirect_to = self.unsuccesseful_url
+            messages.error(self.request, self.error_message % obj.__dict__)
+            return HttpResponseRedirect(redirect_to)
+        return self.render_to_response(context)
+
 
 # Create your views here.
 class register_view(SuccessMessageMixin, CreateView):
@@ -26,7 +43,7 @@ class register_view(SuccessMessageMixin, CreateView):
 
 class users_list_view(ListView):
     model = CustomUser
-    paginate_by = 10
+    paginate_by = 5
     template_name = 'users/userlist.html'
 
     def get_context_data(self, **kwargs):
@@ -37,42 +54,25 @@ class users_list_view(ListView):
         return context
 
 
-class change_view(SuccessMessageMixin, UpdateView):
+class change_view(ErrorMessageMixin, SuccessMessageMixin, UpdateView):
     model = CustomUser
     form_class = CustomUserChangeForm
-    success_url = reverse_lazy('login')
-    not_success_url = reverse_lazy('userlist')
+    success_url = reverse_lazy('userlist')
+    unsuccesseful_url = reverse_lazy('userlist')
     template_name = 'users/update.html'
-    success_message = 'User data was changed sucsessefully'
-    not_success_message = 'Please log in as user'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        obj = self.get_object()
-        context = self.get_context_data(object=self.object)
-        if self.object.pk is not request.user.pk:
-            redirect_to = self.not_success_url
-            messages.warning(self.request, self.not_success_message % obj.__dict__)
-            return HttpResponseRedirect(redirect_to)
-        return self.render_to_response(context)
+    success_message = "%(username)s's data was changed sucsessefully"
+    error_message = 'Please log in as user %(username)s'
 
 
-class delete_view(SuccessMessageMixin, DeleteView):
+
+
+class delete_view(ErrorMessageMixin, SuccessMessageMixin, DeleteView):
     model = CustomUser
     success_url = reverse_lazy('userlist')
+    unsuccesseful_url = reverse_lazy('userlist')
     template_name = 'users/delete.html'
-    success_message = 'User was deleted sucsessefully'
-    not_success_message = 'Please log in as user'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        obj = self.get_object()
-        context = self.get_context_data(object=self.object)
-        if self.object.pk is not request.user.pk:
-            success_url = self.get_success_url()
-            messages.warning(self.request, self.not_success_message % obj.__dict__)
-            return HttpResponseRedirect(success_url)
-        return self.render_to_response(context)
+    success_message = 'User %(username)s was deleted sucsessefully'
+    error_message = 'Please log in as user %(username)s'
 
 
     def delete(self, request, *args, **kwargs):
@@ -81,3 +81,12 @@ class delete_view(SuccessMessageMixin, DeleteView):
         messages.success(self.request, self.success_message % obj.__dict__)
         return data_to_return
 
+
+class logout_view(authviews.LogoutView):
+    success_message = 'Successfully logged out.'
+    next_page = '/users/login'
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        messages.success(request, self.success_message)
+        return response
