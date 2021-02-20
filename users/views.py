@@ -10,6 +10,7 @@ from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils.translation import gettext_lazy as _
 
 from users.forms import CustomUserCreationForm, CustomUserChangeForm
 from users.models import CustomUser
@@ -34,11 +35,10 @@ class ErrorMessageMixin:
 
 # Create your views here.
 class register_view(SuccessMessageMixin, CreateView):
-    http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'users/register.html'
-    success_message = 'User was created sucsessefully'
+    success_message = _('User "%(username)s" was created sucsessefully')
 
 
 class users_list_view(ListView):
@@ -60,8 +60,12 @@ class change_view(ErrorMessageMixin, SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('userlist')
     unsuccesseful_url = reverse_lazy('userlist')
     template_name = 'users/update.html'
-    success_message = "%(username)s's data was changed sucsessefully"
-    error_message = 'Please log in as user %(username)s'
+    success_message = _(
+        "%(username)s's data was changed sucsessefully"
+        )
+    error_message = _(
+        'You can manage only your own data. Please log in as user "%(username)s"'
+        )
 
 
 
@@ -71,8 +75,8 @@ class delete_view(ErrorMessageMixin, SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('userlist')
     unsuccesseful_url = reverse_lazy('userlist')
     template_name = 'users/delete.html'
-    success_message = 'User %(username)s was deleted sucsessefully'
-    error_message = 'Please log in as user %(username)s'
+    success_message = _('User %(username)s was deleted sucsessefully')
+    error_message = _('Please log in as user %(username)s')
 
 
     def delete(self, request, *args, **kwargs):
@@ -83,7 +87,7 @@ class delete_view(ErrorMessageMixin, SuccessMessageMixin, DeleteView):
 
 
 class logout_view(authviews.LogoutView):
-    success_message = 'Successfully logged out.'
+    success_message = _('Successfully logged out.')
     next_page = '/users/login'
 
     def dispatch(self, request, *args, **kwargs):

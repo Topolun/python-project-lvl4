@@ -2,13 +2,15 @@
 
 {% load tasks_extras %}
 
-{% block heading %}TEST TABLE{% endblock heading %}
+{% load i18n %}
+
+{% block heading %}{% translate "USER LIST" %}{% endblock heading %}
 
 {% block content %}
 <table class="table table-dark table-striped table-hover">
     <tr>
     {% for column in columns %}
-        <th>{{ column }}</th>
+        <th>{% translate column %}</th>
     {% endfor %}
         <th></th>
     </tr>
@@ -25,28 +27,23 @@
     {% endfor %}
 </table>
 
-
-
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         {% if page_obj.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="?page=1">{% translate "First" %}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% translate "Previous" %}</a></li>
         {% else %}
-            <li class="page-item disabled"><a class="page-link" href="#">First</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">{% translate "First" %}</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">{% translate "Previous" %}</a></li>
         {% endif %}    
-            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">{% translate "Page" %} {{ page_obj.number }} {% translate "of" %} {{ page_obj.paginator.num_pages }}</a></li>
         {% if page_obj.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% translate "Next" %}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{% translate "Last" %}</a></li>
         {% else %}
-            <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">{% translate "Next" %}</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">{% translate "Last" %}</a></li>
         {% endif %}
     </ul>
 </nav>
-
-
-
 {% endblock content %}

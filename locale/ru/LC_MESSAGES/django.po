@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-27 12:30+0400\n"
+"POT-Creation-Date: 2021-02-14 13:09+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,13 +21,100 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: task_manager/templates/task_manager/index.html:22
+#: task_manager/templates/task_manager/nav_links.html:4
 msgid "Home"
-msgstr "На главную"
+msgstr "Главная"
 
 #: task_manager/templates/task_manager/index.html:24
 msgid "User"
-msgstr "Пользователь!"
+msgstr "Пользователь"
+
+#: task_manager/templates/task_manager/nav_links.html:5
+msgid "login"
+msgstr "Вход"
+
+#: task_manager/templates/task_manager/nav_links.html:6
+msgid "Register"
+msgstr "Регистрация"
+
+#: task_manager/templates/task_manager/nav_links.html:7
+msgid "Users"
+msgstr "Пользователи"
+
+#: task_manager/templates/task_manager/nav_links.html:8
+msgid "logout"
+msgstr "Выход"
 
 #: task_manager/views.py:6
 msgid "Translate it"
 msgstr "Переведи это"
+
+#: users/templates/users/userlist.html:7
+msgid "USER LIST"
+msgstr "СПИСОК ПОЛЬЗОВАТЕЛЕЙ"
+
+#: users/templates/users/userlist.html:33
+#: users/templates/users/userlist.html:36
+msgid "First"
+msgstr "Первая"
+
+#: users/templates/users/userlist.html:34
+#: users/templates/users/userlist.html:37
+msgid "Previous"
+msgstr "Предыдущая"
+
+#: users/templates/users/userlist.html:39
+msgid "Page"
+msgstr "Страница"
+
+#: users/templates/users/userlist.html:39
+msgid "of"
+msgstr "из"
+
+#: users/templates/users/userlist.html:41
+#: users/templates/users/userlist.html:44
+msgid "Next"
+msgstr "Следующая"
+
+#: users/templates/users/userlist.html:42
+#: users/templates/users/userlist.html:45
+msgid "Last"
+msgstr "Последняя"
+
+#: users/views.py:41
+#, python-format
+msgid "User \"%(username)s\" was created sucsessefully"
+msgstr "Пользователь \"%(username)s\" был создан успешно"
+
+#: users/views.py:64
+#, python-format
+msgid "%(username)s's data was changed sucsessefully"
+msgstr "Данные пользователя \"%(username)s\" были успешно изменены"
+
+#: users/views.py:67
+#, python-format
+msgid ""
+"You can manage only your own data. Please log in as user \"%(username)s\""
+msgstr ""
+"Можно изменять только свои данные. Зарегистрируйтесь как \"%(username)s\""
+
+#: users/views.py:78
+#, python-format
+msgid "User %(username)s was deleted sucsessefully"
+msgstr "Пользователь \"%(username)s\" был успешно удален"
+
+#: users/views.py:79
+#, python-format
+msgid "Please log in as user %(username)s"
+msgstr ""
+"Можно изменять только свои данные. Зарегистрируйтесь как \"%(username)s\""
+
+#: users/views.py:90
+msgid "Successfully logged out."
+msgstr "Выход произведен успешно"
+
+msgid "date_joined"
+msgstr "Дата создания"
+
+msgid "get_full_name()"
+msgstr "Полное имя"
