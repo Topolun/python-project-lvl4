@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-14 13:09+0400\n"
+"POT-Creation-Date: 2021-02-20 21:19+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,14 @@ msgstr "Переведи это"
 #: users/templates/users/userlist.html:7
 msgid "USER LIST"
 msgstr "СПИСОК ПОЛЬЗОВАТЕЛЕЙ"
+
+#: users/templates/users/userlist.html:23
+msgid "Update"
+msgstr "Изменить"
+
+#: users/templates/users/userlist.html:24
+msgid "Delete"
+msgstr "Удалить"
 
 #: users/templates/users/userlist.html:33
 #: users/templates/users/userlist.html:36

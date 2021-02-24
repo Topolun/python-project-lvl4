@@ -66,8 +66,11 @@ class change_view(ErrorMessageMixin, SuccessMessageMixin, UpdateView):
     error_message = _(
         'You can manage only your own data. Please log in as user "%(username)s"'
         )
-
-
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 class delete_view(ErrorMessageMixin, SuccessMessageMixin, DeleteView):

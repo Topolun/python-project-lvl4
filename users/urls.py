@@ -29,12 +29,12 @@ urlpatterns = [
     ),
     path(
         '<int:pk>/update/',
-        views.change_view.as_view(extra_context={'register': 'active'}, http_method_names=['get', 'post']),
+        views.change_view.as_view(extra_context={'users': 'active'}, http_method_names=['get', 'post']),
         name='UpdateUser'
     ),
     path(
         '<int:pk>/delete/',
-        views.delete_view.as_view(extra_context={'register': 'active'}),
+        views.delete_view.as_view(extra_context={'users': 'active'}),
         name='DeleteUser'
     ),
 ]
