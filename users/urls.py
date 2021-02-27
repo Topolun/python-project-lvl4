@@ -6,7 +6,7 @@ from users import views
 urlpatterns = [
     path(
         'login/',
-        authviews.LoginView.as_view(
+        views.CustomLoginView.as_view(
             template_name='users/login.html',
             extra_context={'login': 'active'},
             ),

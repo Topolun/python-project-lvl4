@@ -6,6 +6,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
 )
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.urls import reverse_lazy, reverse
 
@@ -15,6 +16,14 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = ('username', )
+
+
+class CustomLoginForm(AuthenticationForm):
+    password = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'}),
+    )
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -71,10 +80,9 @@ class CustomUserChangeForm(UserChangeForm):
         return password2
 
     def save(self, commit=True):
-        password = self.cleaned_data["new_password1"]
-        if not password:
-            return
-        self.user.set_password(password)
+        user = super().save(commit=False)
+        if self.cleaned_data.get('new_password1'):
+            user.set_password(self.cleaned_data["new_password1"])
         if commit:
-            self.user.save()
-        return self.user
+            user.save()
+        return user

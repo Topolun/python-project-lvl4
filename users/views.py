@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import gettext_lazy as _
 
-from users.forms import CustomUserCreationForm, CustomUserChangeForm
+from users.forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm
 from users.models import CustomUser
 
 from django.contrib.auth import views as authviews
@@ -58,6 +58,7 @@ class change_view(ErrorMessageMixin, SuccessMessageMixin, UpdateView):
     model = CustomUser
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('userlist')
+    absolute_url = 'users/login.html'
     unsuccesseful_url = reverse_lazy('userlist')
     template_name = 'users/update.html'
     success_message = _(
@@ -97,3 +98,7 @@ class logout_view(authviews.LogoutView):
         response = super().dispatch(request, *args, **kwargs)
         messages.success(request, self.success_message)
         return response
+
+
+class CustomLoginView(authviews.LoginView):
+    form_class = CustomLoginForm
