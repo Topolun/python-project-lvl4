@@ -1,3 +1,5 @@
+https://travis-ci.org/Topolun/python-project-lvl4.svg?branch=main
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Topolun/python-project-lvl4/workflows/hexlet-check/badge.svg)](https://github.com/Topolun/python-project-lvl4/actions)
 
