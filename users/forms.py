@@ -1,14 +1,11 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, UsernameField, SetPasswordForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from users.models import CustomUser
-from django.contrib.auth.forms import ReadOnlyPasswordHashField, SetPasswordForm
 from django import forms
-from django.utils.translation import gettext, gettext_lazy as _
-from django.contrib.auth import (
-    authenticate, get_user_model, password_validation,
-)
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import password_validation
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -48,11 +45,9 @@ class CustomUserChangeForm(UserChangeForm):
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
     )
 
-
     class Meta(UserChangeForm.Meta):
         model = CustomUser
         fields = ('username', 'first_name', 'last_name')
-
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
@@ -62,8 +57,9 @@ class CustomUserChangeForm(UserChangeForm):
             password.help_text = password.help_text.format('../password/')
         user_permissions = self.fields.get('user_permissions')
         if user_permissions:
-            user_permissions.queryset = user_permissions.queryset.select_related('content_type')
-
+            user_permissions.queryset = (
+                user_permissions.queryset.select_related('content_type')
+            )
 
     def clean_new_password2(self):
         password1 = self.cleaned_data.get('new_password1')

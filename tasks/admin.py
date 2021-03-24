@@ -6,11 +6,14 @@ from tasks.models import Tasks, TaskStatus, Tag
 class TasksAdmin(admin.ModelAdmin):
     list_display = ('name', 'status', 'creator', 'assigned_to')
 
+
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')
 
+
 class TaskStatusAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')
+
 
 admin.site.register(Tasks, TasksAdmin)
 admin.site.register(TaskStatus, TaskStatusAdmin)

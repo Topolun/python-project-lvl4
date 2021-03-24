@@ -1,23 +1,19 @@
-from django.shortcuts import render
 from users.forms import CustomUserCreationForm
-from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy, reverse
-from django.views.decorators.http import require_http_methods
-from django.utils.decorators import method_decorator
-from django.views import View
+from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.utils.translation import gettext_lazy as _
 
-from users.forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm
+from users.forms import CustomUserChangeForm, CustomLoginForm
 from users.models import CustomUser
 
 from django.contrib.auth import views as authviews
 
 # Custom Mixins:
+
 
 class ErrorMessageMixin:
     error_message = ''
@@ -65,9 +61,9 @@ class change_view(ErrorMessageMixin, SuccessMessageMixin, UpdateView):
         "%(username)s's data was changed sucsessefully"
         )
     error_message = _(
-        'You can manage only your own data. Please log in as user "%(username)s"'
+        'You can manage only your own data. Please log in as user "%(username)s"'  # noqa: E501
         )
-    
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
@@ -82,10 +78,11 @@ class delete_view(ErrorMessageMixin, SuccessMessageMixin, DeleteView):
     success_message = _('User %(username)s was deleted sucsessefully')
     error_message = _('Please log in as user %(username)s')
 
-
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
-        data_to_return = super(delete_view, self).delete(request, *args, **kwargs)
+        data_to_return = super(delete_view, self).delete(
+            request, *args, **kwargs
+            )
         messages.success(self.request, self.success_message % obj.__dict__)
         return data_to_return
 

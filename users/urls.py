@@ -1,5 +1,4 @@
 from django.urls import path
-from django.contrib.auth import views as authviews
 from users import views
 
 
@@ -19,7 +18,10 @@ urlpatterns = [
     ),
     path(
         'create/',
-        views.register_view.as_view(extra_context={'register': 'active'}, http_method_names=['get', 'post']),
+        views.register_view.as_view(
+            extra_context={'register': 'active'},
+            http_method_names=['get', 'post']
+            ),
         name='CreateUser'
     ),
     path(
@@ -29,7 +31,10 @@ urlpatterns = [
     ),
     path(
         '<int:pk>/update/',
-        views.change_view.as_view(extra_context={'users': 'active'}, http_method_names=['get', 'post']),
+        views.change_view.as_view(
+            extra_context={'users': 'active'},
+            http_method_names=['get', 'post']
+            ),
         name='UpdateUser'
     ),
     path(
