@@ -12,3 +12,6 @@ runserver:
 
 requirements:
 	poetry export -f requirements.txt -o requirements.txt --without-hashes
+
+staticfiles:
+	poetry run python manage.py collectstatic
