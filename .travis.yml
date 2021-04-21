@@ -9,4 +9,5 @@ before_install:
     
 script: 
     - make lint
+    - make staticfiles
     - make test
